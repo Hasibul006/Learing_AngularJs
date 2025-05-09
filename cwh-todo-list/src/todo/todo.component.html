@@ -1,1 +1,12 @@
-<p>todo works!</p>
+<p>Todo List</p>
+<input type = "text" [(ngModel)]="newTodoTitle">
+<button (click)="addTodo()">Add Todo</button>
+<div class="todo-list">
+  <ul>
+    <li *ngFor="let todo of todos">
+      <input type="checkbox" [(ngModel)]="todo.completed">
+      {{todo.title}}
+      <button (click)="deleteTodo(todo.id)">Delete</button>
+    </li>
+  </ul>
+</div>
