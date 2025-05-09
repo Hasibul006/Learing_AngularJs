@@ -1,12 +1,40 @@
-<p>Todo List</p>
-<input type = "text" [(ngModel)]="newTodoTitle">
-<button (click)="addTodo()">Add Todo</button>
+
+<div class="todo-form">
+  <input type="number" [(ngModel)]="newUserId" placeholder="User Id">
+  <input type="text" [(ngModel)]="newTodoTitle" placeholder="Todo Title">
+  
+  <label>
+    <input type="checkbox" [(ngModel)]="newTodoCompleted"> Completed
+  </label>
+
+  <button (click)="addTodo()">Add Todo</button>
+</div>
+
 <div class="todo-list">
-  <ul>
-    <li *ngFor="let todo of todos">
-      <input type="checkbox" [(ngModel)]="todo.completed">
-      {{todo.title}}
-      <button (click)="deleteTodo(todo.id)">Delete</button>
-    </li>
-  </ul>
+    <div class="todo-item">
+      <table border="1" cellspacing="0" cellpadding="8">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Completed</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for( todo of todos; track todo.id ) {
+          <tr>
+            <td>{{todo.id}}</td>
+            <td>{{todo.title}}</td>
+            <td>{{todo.completed}}</td>
+            <td>
+              <button (click)="toggleTodo(todo)">Toggle</button>
+              <button (click)="deleteTodo(todo)">Delete</button>
+            </td>
+          </tr>
+        }
+        </tbody>
+      </table>
+    </div>
+  
 </div>
